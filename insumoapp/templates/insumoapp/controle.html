@@ -1,0 +1,14 @@
+{% extends 'insumoapp/base.html' %}
+
+
+{% block content %}
+<div class="container">
+  <h1>Controle de Insumos</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+    <button type="submit">Editar</button>
+  </form>
+</div>
+{% endblock %}

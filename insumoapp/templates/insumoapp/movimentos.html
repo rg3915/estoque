@@ -1,0 +1,29 @@
+{% extends 'insumoapp/base.html' %}
+
+
+{% block content %}
+  <div class="container">
+    <h2>Entrada de Materiais</h2>
+    <p>Listagem das entradas por movimentação</p>
+    <table class="table table-striped table-responsive-md">
+      <thead class="cyan lighten-3">
+        <tr>
+          <th class="th-lg">Registro</th>
+          <th class="th-lg">Descrição</th>
+          <th class="th-lg">Quantidade</th>
+          <th class="th-lg">Data Entrada</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prod in produtos %}
+        <tr>
+            <td>{{ prod.codigo }}</td>
+            <td>{{ prod }}</td>
+            <td>{{ prod.qtd }}</td>
+            <td>{{ prod.dt_mov | date:"d.m.Y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

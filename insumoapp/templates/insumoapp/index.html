@@ -1,0 +1,12 @@
+{% extends 'insumoapp/base.html' %}
+
+
+{% block content %}
+  <h1>Insumos</h1>
+  <br>
+  <ul>
+    {% for prod in produtos %}
+      <li>{{ prod.codigo }} -- {{ prod.descricao }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
