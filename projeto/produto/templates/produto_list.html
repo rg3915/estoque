@@ -1,16 +1,5 @@
 {% extends "base.html" %}
 
-{% block css %}
-  <style>
-    .ok {
-      color: green;
-    }
-    .no {
-      color: red;
-    }
-  </style>
-{% endblock css %}
-
 {% block content %}
 
 <div class="page-header">
@@ -40,7 +29,9 @@
               {% endif %}
             </td>
             <td>{{ object.ncm }}</td>
-            <td>{{ object.produto }}</td>
+            <td>
+              <a href="{{ object.get_absolute_url }}">{{ object.produto }}</a>
+            </td>
             <td>R$ <span class="pull-right">{{ object.preco }}</span></td>
             <td class="text-center">{{ object.estoque }}</td>
             <td class="text-center">{{ object.estoque_minimo }}</td>
