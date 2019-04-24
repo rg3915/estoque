@@ -6,6 +6,9 @@ $(document).ready(function() {
   $('#id_estoque-0-saldo').prop('type', 'hidden')
   // Cria um span para mostrar o saldo na tela.
   $('label[for="id_estoque-0-saldo"]').append('<span id="id_estoque-0-saldo-span" class="lead" style="padding-left:10px"></span>')
+  // Select2
+  $('.clProduto').select2()
+});
 
   $('#add-item').click(function(ev) {
     ev.preventDefault();
@@ -30,8 +33,9 @@ $(document).ready(function() {
 
     // Cria um span para mostrar o saldo na tela.
     $('label[for="id_estoque-' + (count) + '-saldo"]').append('<span id="id_estoque-' + (count) + '-saldo-span" class="lead" style="padding-left:10px"></span>')
+    // Select2
+    $('.clProduto').select2()
   });
-});
 
 let estoque
 let saldo
