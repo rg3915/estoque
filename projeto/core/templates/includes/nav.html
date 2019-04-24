@@ -22,5 +22,12 @@
                 </div>
             </li>
         </ul>
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a href="{% url 'logout' %}" class="nav-link">Sair</a>
+            </li>
+          </ul>
+        {% endif %}
     </div>
 </nav>
