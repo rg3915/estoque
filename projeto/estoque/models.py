@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse_lazy
 from projeto.core.models import TimeStampedModel
 from projeto.produto.models import Produto
 from .managers import EstoqueEntradaManager, EstoqueSaidaManager

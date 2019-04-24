@@ -8,7 +8,11 @@
   <a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
 {% endif %}
 
-<h1>{{ object }}</h1>
+{% if object.movimento == 'e' %}
+  <h1>Entrada: {{ object }}</h1>
+{% else %}
+  <h1>Saída: {{ object }}</h1>
+{% endif %}
 
 <div class="col-sm-6">
   <table class="table table-user-information">

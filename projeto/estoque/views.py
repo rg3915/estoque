@@ -88,7 +88,7 @@ def estoque_add(request, template_name, movimento, url):
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
     movimento = 'e'
-    url = 'estoque:estoque_entrada_detail'
+    url = 'estoque:estoque_detail'
     context = estoque_add(request, template_name, movimento, url)
     if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
@@ -130,7 +130,7 @@ def estoque_saida_detail(request, pk):
 def estoque_saida_add(request):
     template_name = 'estoque_saida_form.html'
     movimento = 's'
-    url = 'estoque:estoque_saida_detail'
+    url = 'estoque:estoque_detail'
     context = estoque_add(request, template_name, movimento, url)
     if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
