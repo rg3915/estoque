@@ -11,4 +11,5 @@ urlpatterns = [
     path('add/', v.estoque_entrada_add, name='estoque_entrada_add'),
     path('saida/', v.estoque_saida_list, name='estoque_saida_list'),
     path('saida/<int:pk>/', v.estoque_saida_detail, name='estoque_saida_detail'),
+    path('saida/add/', v.estoque_saida_add, name='estoque_saida_add'),
 ]
