@@ -62,6 +62,7 @@ def estoque_add(request, template_name, movimento, url):
         EstoqueItens,
         form=EstoqueItensForm,
         extra=0,
+        can_delete=False,
         min_num=1,
         validate_min=True,
     )
