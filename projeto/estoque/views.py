@@ -39,14 +39,9 @@ def estoque_entrada_detail(request, pk):
     return render(request, template_name, context)
 
 
-class EstoqueEntradaDetail(DetailView):
-    model = EstoqueEntrada
+class EstoqueDetail(DetailView):
+    model = Estoque
     template_name = 'estoque_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(EstoqueEntradaDetail, self).get_context_data(**kwargs)
-        context['url_list'] = 'estoque:estoque_entrada_list'
-        return context
 
 
 def dar_baixa_estoque(form):
@@ -130,16 +125,6 @@ def estoque_saida_detail(request, pk):
         'url_list': 'estoque:estoque_saida_list'
     }
     return render(request, template_name, context)
-
-
-class EstoqueSaidaDetail(DetailView):
-    model = EstoqueSaida
-    template_name = 'estoque_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(EstoqueSaidaDetail, self).get_context_data(**kwargs)
-        context['url_list'] = 'estoque:estoque_saida_list'
-        return context
 
 
 def estoque_saida_add(request):
