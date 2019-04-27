@@ -41,3 +41,8 @@ python manage.py migrate
 [form-inline-cbv](http://felipefrizzo.github.io/post/form-inline-cbv/)
 
 [django-bootstrap-form](https://django-bootstrap-form.readthedocs.io/en/latest/)
+
+[Paginação - gist](https://gist.github.com/rg3915/01ca76f099f431c24bc0536bef83076b)
+
+[Paginação - Bootstrap](https://getbootstrap.com/docs/4.3/components/pagination/)
+
