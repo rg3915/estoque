@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap %}
+
+{% block css %}
+
+  <style>
+    .form-control {
+      margin: 10px;
+    }
+  </style>
+
+{% endblock css %}
+
+{% block content %}
+
+<a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
+
+<div class="row">
+  <div class="cols">
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      <legend style="border-bottom: 1px solid #e5e5e5;">Estoque Saída</legend>
+
+      <div class="row">
+        <div class="col-sm-6">
+          {% for field in form.visible_fields %}
+            <div class="form-group{% if field.errors %} has-error {% endif%}">
+              <label for="{{ field.id_for_label }}">
+                {% if field.field.required %}
+                  <span class="required">{{ field.label }} </span>
+                {% else %}
+                  {{ field.label }}
+                {% endif %}
+              </label>
+              {% render_field field class="form-control" %}
+              {% for error in field.errors %}
+                <span class="text-muted">{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        {{ formset.management_form }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <legend style="border-bottom: 1px solid #e5e5e5;">Produtos</legend>
+          <div id="estoque" class="form-inline">
+            {% for item_estoque_form in formset %}
+              <div id="item-{{ forloop.counter0 }}" class="form-group">
+                {{ item_estoque_form|bootstrap }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <span id="add-item" class="btn btn-info" style="margin-top: 10px;">
+        <i class="fa fa-plus"></i> Adicionar
+      </span>
+
+      <div class="row float-right">
+        <div class="col-sm-12" style="margin-top: 10px;">
+          <div class="form-inline buttons">
+            <button class="btn btn-primary" value="Save">
+              <i class="fa fa-floppy-o"></i>
+              Salvar
+            </button>
+            <a href="{% url 'estoque:estoque_saida_list' %}" class="btn btn-danger">
+              <i class="fa fa-times"></i>
+              Cancelar
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/estoque_saida.js' %}"></script>
+
+<script type="text/html" id="item-estoque">
+  <div id="item-__prefix__" class="form-group">
+    {{ formset.empty_form|bootstrap }}
+  </div>
+</script>
+
+
+{% endblock js %}

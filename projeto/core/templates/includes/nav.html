@@ -1,0 +1,33 @@
+<!-- https://github.com/JTruax/bootstrap-starter-template/blob/master/template/start.html -->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Estoque</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'core:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'produto:produto_list' %}">Produtos</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estoque</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'estoque:estoque_entrada_list' %}">Entrada</a>
+                    <a class="dropdown-item" href="{% url 'estoque:estoque_saida_list' %}">Saída</a>
+                </div>
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a href="{% url 'logout' %}" class="nav-link">Sair</a>
+            </li>
+          </ul>
+        {% endif %}
+    </div>
+</nav>

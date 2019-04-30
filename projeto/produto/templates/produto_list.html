@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-6">
+    <form action="." method="GET" class="form-inline">
+      <input type="text" id="search" name="search" class="form-control" placeholder="Busca">
+      <input type="submit" class="btn btn-primary" style="margin-left: 10px;" value="OK">
+    </form>
+  </div>
+</div>
+
+<div class="page-header">
+  <h2>Lista de Produtos
+    <span class="pull-right">
+      <a href="{% url 'produto:produto_add' %}">
+        <button type="button" class="btn btn-primary">
+          <span class="fa fa-plus"></span> Adicionar
+        </button>
+      </a>
+    </span>
+  </h2>
+
+  {% if object_list %}
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Importado</th>
+          <th>NCM</th>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th class="text-center">Estoque</th>
+          <th class="text-center">Estoque mínimo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in object_list %}
+          <tr>
+            <td>
+              {% if object.importado %}
+                <i class="fa fa-check-circle ok"></i>
+              {% else %}
+                <i class="fa fa-minus-circle no"></i>
+              {% endif %}
+            </td>
+            <td>{{ object.ncm }}</td>
+            <td>
+              <a href="{{ object.get_absolute_url }}">{{ object.produto }}</a>
+            </td>
+            <td>R$ <span class="pull-right">{{ object.preco }}</span></td>
+            <td class="text-center">{{ object.estoque }}</td>
+            <td class="text-center">{{ object.estoque_minimo }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="alert alert-warning">Sem itens na lista.</p>
+  {% endif %}
+
+</div>
+
+{% include "includes/pagination.html" %}
+
+{% endblock content %}
