@@ -2,7 +2,6 @@
 
 Controle de estoque
 
-
 ## Como rodar o projeto?
 
 * Clone esse repositório.
