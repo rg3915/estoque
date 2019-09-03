@@ -93,3 +93,17 @@ def import_csv(request):
 
     template_name = 'produto_import.html'
     return render(request, template_name)
+
+
+def export_csv(request):
+    header = (
+        'importado', 'ncm', 'produto', 'preco', 'estoque', 'estoque_minimo',
+    )
+    produtos = Produto.objects.all().values_list(*header)
+    with open('fix/produtos_exportados.csv', 'w') as csvfile:
+        produto_writer = csv.writer(csvfile)
+        produto_writer.writerow(header)
+        for produto in produtos:
+            produto_writer.writerow(produto)
+    messages.success(request, 'Produtos exportados com sucesso.')
+    return HttpResponseRedirect(reverse('produto:produto_list'))
