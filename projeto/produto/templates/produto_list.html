@@ -2,6 +2,14 @@
 
 {% block content %}
 
+{% for message in messages %}
+  {% if 'success' in message.tags %}
+    <p class="alert alert-success" role="alert"><span style="font-weight: bold">{{ message }}</span></p>
+  {% else %}
+    <p class="alert alert-danger" role="alert"><span style="font-weight: bold">{{ message }}</span></p>
+  {% endif %}
+{% endfor %}
+
 <div class="row">
   <div class="col-sm-6">
     <form action="." method="GET" class="form-inline">
@@ -65,3 +73,16 @@
 {% include "includes/pagination.html" %}
 
 {% endblock content %}
+
+{% block js %}
+
+<script>
+  // Close alert after 2 seconds
+  window.setTimeout(function() {
+    $('.alert').fadeTo(500, 0).slideUp(500, function() {
+      $(this).remove();
+    });
+  }, 2000);
+</script>
+
+{% endblock js %}
