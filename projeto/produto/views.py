@@ -33,8 +33,16 @@ def produto_detail(request, pk):
 
 
 def produto_add(request):
-    template_name = 'produto_form.html'
-    return render(request, template_name)
+    form = ProdutoForm(request.POST or None)
+    template_name = 'produto_form2.html'
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('produto:produto_list'))
+
+    context = {'form': form}
+    return render(request, template_name, context)
 
 
 class ProdutoCreate(CreateView):
