@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form method="POST" novalidate>
+  {% csrf_token %}
+
+    <div class="form-group">
+      <label for="id_importado">
+        
+          Importado
+        
+      </label>
+      <input type="checkbox" name="importado" class="form-control" id="id_importado">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_ncm">
+        
+          <span class="required">NCM </span>
+        
+      </label>
+      <input type="text" name="ncm" maxlength="8" class="form-control" required id="id_ncm">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_produto">
+        
+          <span class="required">Produto </span>
+        
+      </label>
+      <input type="text" name="produto" maxlength="100" class="form-control" required id="id_produto">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_preco">
+        
+          <span class="required">Preço </span>
+        
+      </label>
+      <input type="number" name="preco" step="0.01" class="form-control" required id="id_preco">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_estoque">
+        
+          <span class="required">Estoque atual </span>
+        
+      </label>
+      <input type="number" name="estoque" class="form-control" required id="id_estoque">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_estoque_minimo">
+        
+          <span class="required">Estoque mínimo </span>
+        
+      </label>
+      <input type="number" name="estoque_minimo" value="0" min="0" class="form-control" required id="id_estoque_minimo">
+      
+    </div>
+  
+    <div class="form-group">
+      <label for="id_data">
+        
+          Data
+        
+      </label>
+      <input type="text" name="data" class="form-control" id="id_data">
+      
+    </div>
+  
+  <button type="submit" class="btn btn-success">Cadastrar</button>
+</form>
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/produto.js' %}"></script>
+
+{% endblock js %}
