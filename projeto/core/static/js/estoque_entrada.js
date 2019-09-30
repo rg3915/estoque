@@ -6,6 +6,8 @@ $(document).ready(function() {
   $('#id_estoque-0-saldo').prop('type', 'hidden')
   // Cria um span para mostrar o saldo na tela.
   $('label[for="id_estoque-0-saldo"]').append('<span id="id_estoque-0-saldo-span" class="lead" style="padding-left: 10px;"></span>')
+  // Cria um campo com o estoque inicial.
+  $('label[for="id_estoque-0-saldo"]').append('<input id="id_estoque-0-inicial" class="form-control" type="hidden" />')
   // Select2
   $('.clProduto').select2()
 });
@@ -33,7 +35,8 @@ $(document).ready(function() {
 
     // Cria um span para mostrar o saldo na tela.
     $('label[for="id_estoque-' + (count) + '-saldo"]').append('<span id="id_estoque-' + (count) + '-saldo-span" class="lead" style="padding-left: 10px;"></span>')
-
+    // Cria um campo com o estoque inicial.
+    $('label[for="id_estoque-' + (count) + '-saldo"]').append('<input id="id_estoque-' + (count) + '-inicial" class="form-control" type="hidden" />')
     // Select2
     $('.clProduto').select2()
   });
@@ -55,6 +58,9 @@ $(document).on('change', '.clProduto', function() {
     success: function(response) {
       estoque = response.data[0].estoque
       campo = self.attr('id').replace('produto', 'quantidade')
+      estoque_inicial = self.attr('id').replace('produto', 'inicial')
+      // Estoque inicial
+      $('#'+estoque_inicial).val(estoque)
       // Remove o valor do campo 'quantidade'
       $('#'+campo).val('')
     },
@@ -67,8 +73,11 @@ $(document).on('change', '.clProduto', function() {
 $(document).on('change', '.clQuantidade', function() {
   quantidade = $(this).val();
   // Aqui é feito o cálculo de soma do estoque
-  saldo = Number(quantidade) + Number(estoque);
+  // saldo = Number(quantidade) + Number(estoque);
   campo = $(this).attr('id').replace('quantidade', 'saldo')
+  campo_estoque_inicial = $(this).attr('id').replace('quantidade', 'inicial')
+  estoque_inicial = $('#'+campo_estoque_inicial).val()
+  saldo = Number(quantidade) + Number(estoque_inicial)
   // Desabilita o 'Saldo'
   $('#'+campo).prop('type', 'hidden')
   // Atribui o saldo ao campo 'saldo'
