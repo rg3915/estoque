@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, ListView
+from projeto.produto.actions.import_xlsx import import_xlsx as action_import_xlsx
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -114,4 +115,11 @@ def export_csv(request):
         for produto in produtos:
             produto_writer.writerow(produto)
     messages.success(request, 'Produtos exportados com sucesso.')
+    return HttpResponseRedirect(reverse('produto:produto_list'))
+
+
+def import_xlsx(request):
+    filename = 'fix/produtos.xlsx'
+    action_import_xlsx(filename)
+    messages.success(request, 'Produtos importados com sucesso.')
     return HttpResponseRedirect(reverse('produto:produto_list'))
