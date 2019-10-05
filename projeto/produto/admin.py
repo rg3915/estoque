@@ -1,7 +1,12 @@
 import csv
+import xlwt
+from datetime import datetime
 from django.contrib import admin
 from django.http import HttpResponse
 from .models import Produto, Categoria
+
+
+MDATA = datetime.now().strftime('%Y-%m-%d')
 
 
 @admin.register(Produto)
@@ -17,7 +22,7 @@ class ProdutoAdmin(admin.ModelAdmin):
     )
     search_fields = ('produto',)
     list_filter = ('importado',)
-    actions = ('export_as_csv',)
+    actions = ('export_as_csv', 'export_as_xlsx')
 
     class Media:
         js = (
@@ -43,6 +48,55 @@ class ProdutoAdmin(admin.ModelAdmin):
         return response
 
     export_as_csv.short_description = "Exportar CSV"
+
+    def export_as_xlsx(self, request, queryset):
+
+        meta = self.model._meta
+        columns = (
+            'Importado',
+            'NCM',
+            'Produto',
+            'Preço',
+            'Estoque',
+            'Estoque mínimo',
+            'Categoria'
+        )
+
+        response = HttpResponse(content_type='application/ms-excel')
+        response[
+            'Content-Disposition'] = 'attachment; filename="%s_%s.xlsx"' % (meta, MDATA)
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet(self.model.__name__)
+
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        default_style = xlwt.XFStyle()
+
+        rows = queryset.values_list(
+            'importado',
+            'ncm',
+            'produto',
+            'preco',
+            'estoque',
+            'estoque_minimo',
+            'categoria__categoria',
+        )
+        for row, rowdata in enumerate(rows):
+            row_num += 1
+            for col, val in enumerate(rowdata):
+                ws.write(row_num, col, val, default_style)
+
+        wb.save(response)
+        return response
+
+    export_as_xlsx.short_description = "Exportar XLSX"
 
 
 @admin.register(Categoria)
