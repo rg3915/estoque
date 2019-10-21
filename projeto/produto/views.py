@@ -1,5 +1,6 @@
 import csv
 import io
+import pandas as pd
 from datetime import datetime
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
@@ -146,3 +147,22 @@ def exportar_produtos_xlsx(request):
                'Estoque', 'Estoque mínimo', 'Categoria')
     response = export_xlsx(model, filename_final, queryset, columns)
     return response
+
+
+def import_csv_with_pandas(request):
+    filename = 'fix/produtos.csv'
+    df = pd.read_csv(filename)
+    aux = []
+    for row in df.values:
+        obj = Produto(
+            produto=row[0],
+            ncm=row[1],
+            importado=row[2],
+            preco=row[3],
+            estoque=row[4],
+            estoque_minimo=row[5],
+        )
+        aux.append(obj)
+    Produto.objects.bulk_create(aux)
+    messages.success(request, 'Produtos importados com sucesso.')
+    return HttpResponseRedirect(reverse('produto:produto_list'))

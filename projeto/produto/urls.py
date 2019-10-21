@@ -16,4 +16,9 @@ urlpatterns = [
     path('export/csv/', v.export_csv, name='export_csv'),
     path('import/xlsx/', v.import_xlsx, name='import_xlsx'),
     path('export/xlsx/', v.exportar_produtos_xlsx, name='export_xlsx'),
+    path(
+        'import/csv/pandas/',
+        v.import_csv_with_pandas,
+        name='import_csv_with_pandas'
+    ),
 ]
