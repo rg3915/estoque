@@ -29,6 +29,12 @@
                     <a class="dropdown-item" href="{% url 'estoque:estoque_saida_list' %}">Saída</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Protocolo de Entrega</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown03">
+                    <a class="dropdown-item" href="{% url 'estoque:protocolo_de_entrega_list' %}">Entrega</a>
+                </div>
+            </li>
         </ul>
         {% if user.is_authenticated %}
           <ul class="navbar-nav px-3">

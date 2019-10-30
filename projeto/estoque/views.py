@@ -1,10 +1,14 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, resolve_url
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from projeto.produto.models import Produto
-from .models import Estoque, EstoqueEntrada, EstoqueSaida, EstoqueItens
+from .models import (
+    Estoque, EstoqueEntrada, EstoqueSaida, EstoqueItens, ProtocoloEntrega
+)
 from .forms import EstoqueForm, EstoqueItensForm
 
 
@@ -140,3 +144,53 @@ def estoque_saida_add(request):
     if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
     return render(request, template_name, context)
+
+
+def protocolo_de_entrega(request):
+    template_name = 'protocolo_de_entrega_list.html'
+    objects = ProtocoloEntrega.objects.all()
+    context = {
+        'object_list': objects,
+    }
+    return render(request, template_name, context)
+
+
+def protocolo_de_entrega_detail(request, pk):
+    template_name = 'protocolo_de_entrega_detail.html'
+    obj = ProtocoloEntrega.objects.get(pk=pk)
+    context = {
+        'object': obj,
+    }
+    return render(request, template_name, context)
+
+
+def dar_baixa_no_estoque_com_protocolo_de_entrega(request, pk):
+    entrega = ProtocoloEntrega.objects.get(pk=pk)
+
+    if entrega.estoque_atualizado:
+        messages.error(request, 'Já foi dado baixa nessa entrega.')
+        return HttpResponseRedirect(reverse('produto:produto_list'))
+
+    # criar um Estoque saida
+    estoque_saida = EstoqueSaida.objects.create(
+        funcionario=request.user,
+        movimento='s'
+    )
+    for item in entrega.protocolo_entrega.all():
+        # Criar um Estoque Saida Detail
+        EstoqueItens.objects.create(
+            estoque=estoque_saida,
+            produto=item.produto,
+            quantidade=item.quantidade,
+            saldo=item.produto.estoque - item.quantidade
+        )
+        # Dar baixa no estoque
+        produtos = estoque_saida.estoques.all()
+        for item_produto in produtos:
+            produto = Produto.objects.get(pk=item_produto.produto.pk)
+            produto.estoque = item_produto.saldo
+            produto.save()
+    entrega.estoque_atualizado = True
+    entrega.save()
+    messages.success(request, 'Estoque atualizado com sucesso.')
+    return HttpResponseRedirect(reverse('produto:produto_list'))

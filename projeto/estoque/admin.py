@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import EstoqueEntrada, EstoqueSaida, EstoqueItens
+from .models import (
+    EstoqueEntrada, EstoqueSaida, EstoqueItens, ProtocoloEntrega,
+    ProtocoloEntregaItens
+)
 
 
 class EstoqueItensInline(admin.TabularInline):
@@ -22,4 +25,17 @@ class EstoqueSaidaAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'nf', 'funcionario',)
     search_fields = ('nf',)
     list_filter = ('funcionario',)
+    date_hierarchy = 'created'
+
+
+class ProtocoloEntregaItensInline(admin.TabularInline):
+    model = ProtocoloEntregaItens
+    extra = 0
+
+
+@admin.register(ProtocoloEntrega)
+class ProtocoloEntregaAdmin(admin.ModelAdmin):
+    inlines = (ProtocoloEntregaItensInline,)
+    list_display = ('__str__', 'estoque_atualizado')
+    list_filter = ('usuario',)
     date_hierarchy = 'created'
