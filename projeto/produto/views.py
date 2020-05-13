@@ -3,6 +3,7 @@ import io
 import pandas as pd
 from datetime import datetime
 from django.contrib import messages
+from django.db.models import Q
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -27,6 +28,16 @@ class ProdutoList(ListView):
     model = Produto
     template_name = 'produto_list.html'
     paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super(ProdutoList, self).get_queryset()
+        search = self.request.GET.get('search')
+        if search:
+            queryset = queryset.filter(
+                Q(produto__icontains=search) |
+                Q(ncm__icontains=search)
+            )
+        return queryset
 
 
 def produto_detail(request, pk):
