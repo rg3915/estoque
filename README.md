@@ -11,7 +11,7 @@ Controle de estoque
 * Instale as dependências.
 * Rode as migrações.
 
-```
+```bash
 git clone https://github.com/rg3915/estoque.git
 cd estoque
 python3 -m venv .venv
