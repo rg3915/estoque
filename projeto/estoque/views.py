@@ -155,6 +155,7 @@ def protocolo_de_entrega(request):
     return render(request, template_name, context)
 
 
+@login_required
 def protocolo_de_entrega_detail(request, pk):
     template_name = 'protocolo_de_entrega_detail.html'
     obj = ProtocoloEntrega.objects.get(pk=pk)
