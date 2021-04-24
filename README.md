@@ -23,6 +23,10 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+## Modelo
+
+![models.png](img/models.png)
+
 ## Links
 
 [python-decouple](https://github.com/henriquebastos/python-decouple)
