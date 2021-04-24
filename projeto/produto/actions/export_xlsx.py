@@ -1,7 +1,7 @@
-import xlwt
 from datetime import datetime
-from django.http import HttpResponse
 
+import xlwt
+from django.http import HttpResponse
 
 MDATA = datetime.now().strftime('%Y-%m-%d')
 

@@ -1,17 +1,21 @@
 import csv
 import io
-import pandas as pd
 from datetime import datetime
+
+import pandas as pd
 from django.contrib import messages
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import CreateView, UpdateView, ListView
-from projeto.produto.actions.import_xlsx import import_xlsx as action_import_xlsx
+from django.views.generic import CreateView, ListView, UpdateView
+
 from projeto.produto.actions.export_xlsx import export_xlsx
-from .models import Produto
+from projeto.produto.actions.import_xlsx import \
+    import_xlsx as action_import_xlsx
+
 from .forms import ProdutoForm
+from .models import Produto
 
 
 def produto_list(request):

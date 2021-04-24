@@ -1,6 +1,8 @@
 from django import forms
-from .models import Estoque, EstoqueItens
+
 from projeto.produto.models import Produto
+
+from .models import Estoque, EstoqueItens
 
 
 class EstoqueForm(forms.ModelForm):

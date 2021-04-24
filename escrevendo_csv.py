@@ -1,4 +1,5 @@
 import csv
+
 with open('fix/produtos.csv', 'w') as f:
     csv_writer = csv.writer(f)
     csv_writer.writerow([

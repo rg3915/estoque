@@ -1,5 +1,6 @@
 import xlrd
-from projeto.produto.models import Produto, Categoria
+
+from projeto.produto.models import Categoria, Produto
 
 
 def import_xlsx(filename):

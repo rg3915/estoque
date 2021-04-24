@@ -1,10 +1,11 @@
 import csv
-import xlwt
 from datetime import datetime
+
+import xlwt
 from django.contrib import admin
 from django.http import HttpResponse
-from .models import Produto, Categoria
 
+from .models import Categoria, Produto
 
 MDATA = datetime.now().strftime('%Y-%m-%d')
 

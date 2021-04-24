@@ -1,6 +1,6 @@
 from django.urls import include, path
-from projeto.estoque import views as v
 
+from projeto.estoque import views as v
 
 app_name = 'estoque'
 

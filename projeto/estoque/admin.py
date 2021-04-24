@@ -1,6 +1,10 @@
 from django.contrib import admin
+
 from .models import (
-    EstoqueEntrada, EstoqueSaida, EstoqueItens, ProtocoloEntrega,
+    EstoqueEntrada,
+    EstoqueItens,
+    EstoqueSaida,
+    ProtocoloEntrega,
     ProtocoloEntregaItens
 )
 
