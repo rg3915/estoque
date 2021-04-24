@@ -13,13 +13,15 @@
   </table>
 </div>
 
-<span class="pull-right">
-  <a href="{% url 'estoque:dar_baixa' object.pk %}">
-    <button type="button" class="btn btn-primary">
-      <span class="fa fa-plus"></span> Dar baixa no estoque
-    </button>
-  </a>
-</span>
+{% if not object.estoque_atualizado %}
+  <span class="pull-right">
+    <a href="{% url 'estoque:dar_baixa' object.pk %}">
+      <button type="button" class="btn btn-primary">
+        <span class="fa fa-plus"></span> Dar baixa no estoque
+      </button>
+    </a>
+  </span>
+{% endif %}
 
 <table class="table table-striped">
   <thead>
