@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse_lazy
 from projeto.core.models import TimeStampedModel
 from projeto.produto.models import Produto
 from .managers import EstoqueEntradaManager, EstoqueSaidaManager
@@ -65,3 +66,27 @@ class EstoqueItens(models.Model):
 
     def __str__(self):
         return '{} - {} - {}'.format(self.pk, self.estoque.pk, self.produto)
+
+
+class ProtocoloEntrega(TimeStampedModel):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    estoque_atualizado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_absolute_url(self):
+        return reverse_lazy('estoque:protocolo_de_entrega_detail', kwargs={'pk': self.pk})
+
+
+class ProtocoloEntregaItens(models.Model):
+    protocolo_entrega = models.ForeignKey(
+        ProtocoloEntrega,
+        on_delete=models.CASCADE,
+        related_name='protocolo_entrega'
+    )
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField()
+
+    def __str__(self):
+        return '{} - {} - {}'.format(self.pk, self.protocolo_entrega.pk, self.produto)
