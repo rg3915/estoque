@@ -21,6 +21,7 @@ def import_xlsx(filename):
     categorias_unicas = [Categoria(categoria=categoria)
                          for categoria in set(categorias) if categoria]
 
+    Categoria.objects.all().delete()  # CUIDADO
     Categoria.objects.bulk_create(categorias_unicas)
 
     aux = []
@@ -54,4 +55,5 @@ def import_xlsx(filename):
 
         aux.append(obj)
 
+    Produto.objects.all().delete()  # CUIDADO
     Produto.objects.bulk_create(aux)
