@@ -8,11 +8,7 @@ from django.views.generic import DetailView, ListView
 
 from projeto.produto.models import Produto
 
-from .forms import (
-    EstoqueForm,
-    EstoqueItensEntradaForm,
-    EstoqueItensSaidaForm
-)
+from .forms import EstoqueForm, EstoqueItensEntradaForm, EstoqueItensSaidaForm
 from .models import (
     Estoque,
     EstoqueEntrada,
