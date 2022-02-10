@@ -2,35 +2,35 @@
 
 {% block content %}
 
-<h2>Protocolos de Entrega <small class="h6" style="color: red">Crie pelo Admin</small></h2>
+  <h2>Protocolos de Entrega <small class="h6" style="color: red">Crie pelo Admin</small></h2>
 
-{% if object_list %}
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Funcionário</th>
-        <th>Estoque atualizado</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for object in object_list %}
+  {% if object_list %}
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><a href="{{ object.get_absolute_url }}">{{ object }}</a></td>
-          <td>{{ object.usuario.get_full_name }}</td>
-          <td>
-            {% if object.estoque_atualizado %}
+          <th>Item</th>
+          <th>Funcionário</th>
+          <th>Estoque atualizado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in object_list %}
+          <tr>
+            <td><a href="{{ object.get_absolute_url }}">{{ object }}</a></td>
+            <td>{{ object.usuario.get_full_name }}</td>
+            <td>
+              {% if object.estoque_atualizado %}
                 <i class="fa fa-check-circle ok"></i>
               {% else %}
                 <i class="fa fa-minus-circle no"></i>
               {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% else %}
-  <p class="alert alert-warning">Sem itens na lista.</p>
-{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="alert alert-warning">Sem itens na lista.</p>
+  {% endif %}
 
 {% endblock content %}

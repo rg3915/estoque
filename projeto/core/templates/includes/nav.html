@@ -1,47 +1,47 @@
 <!-- https://github.com/JTruax/bootstrap-starter-template/blob/master/template/start.html -->
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Estoque</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">Estoque</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'core:index' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="{% url 'produto:produto_list' %}">Produtos</a>
-                    <a class="dropdown-item" href="{% url 'produto:import_csv' %}">Importar CSV</a>
-                    <a class="dropdown-item" href="{% url 'produto:export_csv' %}">Exportar CSV</a>
-                    <a class="dropdown-item" href="{% url 'produto:import_xlsx' %}">Importar XLSX</a>
-                    <a class="dropdown-item" href="{% url 'produto:export_xlsx' %}">Exportar XLSX</a>
-                    <a class="dropdown-item" href="{% url 'produto:import_csv_with_pandas' %}">Importar CSV com Pandas</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estoque</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown02">
-                    <a class="dropdown-item" href="{% url 'estoque:estoque_entrada_list' %}">Entrada</a>
-                    <a class="dropdown-item" href="{% url 'estoque:estoque_saida_list' %}">Saída</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Protocolo de Entrega</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown03">
-                    <a class="dropdown-item" href="{% url 'estoque:protocolo_de_entrega_list' %}">Entrega</a>
-                </div>
-            </li>
-        </ul>
-        {% if user.is_authenticated %}
-          <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-              <a href="{% url 'logout' %}" class="nav-link">Sair</a>
-            </li>
-          </ul>
-        {% endif %}
-    </div>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'core:index' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="{% url 'produto:produto_list' %}">Produtos</a>
+          <a class="dropdown-item" href="{% url 'produto:import_csv' %}">Importar CSV</a>
+          <a class="dropdown-item" href="{% url 'produto:export_csv' %}">Exportar CSV</a>
+          <a class="dropdown-item" href="{% url 'produto:import_xlsx' %}">Importar XLSX</a>
+          <a class="dropdown-item" href="{% url 'produto:export_xlsx' %}">Exportar XLSX</a>
+          <a class="dropdown-item" href="{% url 'produto:import_csv_with_pandas' %}">Importar CSV com Pandas</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estoque</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown02">
+          <a class="dropdown-item" href="{% url 'estoque:estoque_entrada_list' %}">Entrada</a>
+          <a class="dropdown-item" href="{% url 'estoque:estoque_saida_list' %}">Saída</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Protocolo de Entrega</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" href="{% url 'estoque:protocolo_de_entrega_list' %}">Entrega</a>
+        </div>
+      </li>
+    </ul>
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a href="{% url 'logout' %}" class="nav-link">Sair</a>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
 </nav>
