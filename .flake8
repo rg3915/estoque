@@ -1,0 +1,90 @@
+[flake8]
+
+; Decrease the verbosity of Flake8’s output. Each time you specify it, it will print less and
+; less information.
+quiet = 0
+
+; Whether to use color in output. Defaults to auto. Possible options are auto, always, and neve
+color = always
+
+; Print the total number of errors.
+count = True
+
+; Provide a comma-separated list of glob patterns to exclude from checks.
+exclude =
+    .svn,
+    CVS,
+    .bzr,
+    .hg,
+    .git,
+    __pycache__,
+    .tox,
+    .nox,
+    .eggs,
+    *.egg,
+    */migrations/*,
+    */static/CACHE/*,
+    docs,
+    .venv
+
+; Select the formatter used to display errors to the user.
+format = pylint
+
+; Toggle whether pycodestyle should enforce matching the indentation of the opening bracket’s
+; line
+hang_closing = False
+
+; Specify a list of codes to ignore. The list is expected to be comma-separated, and does not
+; need to specify an error code exactly
+ignore =
+    E121,
+    E123,
+    E126,
+    E226,
+    E24,
+    E704,
+    W503,
+    W504
+
+; Set the maximum length that any line. Exceptions include lines that are either strings or
+; comments which are entirely URLs.
+max-line-length = 96
+
+; Set the number of spaces used for indentation.
+indent-size = 4
+
+; Specify the list of error codes you wish Flake8 to report
+select =
+    E,
+    F,
+    W,
+    C90,
+    DJ10,
+    DJ11
+
+; Report all errors, even if it is on the same line as a # NOQA comment
+disable_noqa = True
+
+; Print the source code generating the error/warning in question.
+show_source = True
+
+; Count the number of occurrences of each error/warning code and print a report.
+statistics = True
+
+; Specify the number of subprocesses that Flake8 will use to run checks in parallel
+jobs = auto
+
+; Also print output to stdout if output-file has been configured.
+tee = True
+
+; Provide a custom list of builtin functions, objects, names, etc.
+builtins =
+    _,
+    _LE,
+    _LW
+
+; Enable PyFlakes syntax checking of doctests in docstrings.
+doctests = True
+
+; Set the maximum allowed McCabe complexity value for a block of code.
+max-complexity = 15
