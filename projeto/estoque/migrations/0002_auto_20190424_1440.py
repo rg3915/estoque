@@ -7,39 +7,41 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('estoque', '0001_initial'),
+        ("estoque", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='EstoqueEntrada',
-            fields=[
-            ],
+            name="EstoqueEntrada",
+            fields=[],
             options={
-                'verbose_name': 'estoque entrada',
-                'verbose_name_plural': 'estoque entrada',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name": "estoque entrada",
+                "verbose_name_plural": "estoque entrada",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('estoque.estoque',),
+            bases=("estoque.estoque",),
         ),
         migrations.CreateModel(
-            name='EstoqueSaida',
-            fields=[
-            ],
+            name="EstoqueSaida",
+            fields=[],
             options={
-                'verbose_name': 'estoque saída',
-                'verbose_name_plural': 'estoque saída',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name": "estoque saída",
+                "verbose_name_plural": "estoque saída",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('estoque.estoque',),
+            bases=("estoque.estoque",),
         ),
         migrations.AlterField(
-            model_name='estoqueitens',
-            name='estoque',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='estoques', to='estoque.Estoque'),
+            model_name="estoqueitens",
+            name="estoque",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="estoques",
+                to="estoque.Estoque",
+            ),
         ),
     ]
