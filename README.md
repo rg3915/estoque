@@ -54,4 +54,3 @@ python manage.py runserver
 [Paginação - gist](https://gist.github.com/rg3915/01ca76f099f431c24bc0536bef83076b)
 
 [Paginação - Bootstrap](https://getbootstrap.com/docs/4.3/components/pagination/)
-

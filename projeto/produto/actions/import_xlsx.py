@@ -4,22 +4,20 @@ from projeto.produto.models import Categoria, Produto
 
 
 def import_xlsx(filename):
-    '''
+    """
     Importa planilhas xlsx.
-    '''
+    """
     workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
-
-    fields = ('produto', 'ncm', 'importado',
-              'preco', 'estoque', 'estoque_minimo')
 
     categorias = []
     for row in range(1, sheet.nrows):
         categoria = sheet.row(row)[6].value
         categorias.append(categoria)
 
-    categorias_unicas = [Categoria(categoria=categoria)
-                         for categoria in set(categorias) if categoria]
+    categorias_unicas = [
+        Categoria(categoria=categoria) for categoria in set(categorias) if categoria
+    ]
 
     Categoria.objects.all().delete()  # CUIDADO
     Categoria.objects.bulk_create(categorias_unicas)
@@ -30,7 +28,7 @@ def import_xlsx(filename):
         ncm = int(sheet.row(row)[1].value)
 
         _importado = sheet.row(row)[2].value
-        importado = True if _importado == 'True' else False
+        importado = True if _importado == "True" else False
 
         preco = sheet.row(row)[3].value
         estoque = sheet.row(row)[4].value

@@ -5,7 +5,7 @@ Django SECRET_KEY generator.
 """
 from django.utils.crypto import get_random_string
 
-chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+chars = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"
 
 CONFIG_STRING = """
 DEBUG=True
@@ -19,8 +19,10 @@ ALLOWED_HOSTS=127.0.0.1, .localhost
 #EMAIL_USE_TLS=
 #EMAIL_HOST_USER=
 #EMAIL_HOST_PASSWORD=
-""".strip() % get_random_string(50, chars)
+""".strip() % get_random_string(
+    50, chars
+)
 
 # Writing our configuration file to '.env'
-with open('.env', 'w') as configfile:
+with open(".env", "w") as configfile:
     configfile.write(CONFIG_STRING)

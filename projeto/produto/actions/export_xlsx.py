@@ -3,14 +3,14 @@ from datetime import datetime
 import xlwt
 from django.http import HttpResponse
 
-MDATA = datetime.now().strftime('%Y-%m-%d')
+MDATA = datetime.now().strftime("%Y-%m-%d")
 
 
 def export_xlsx(model, filename, queryset, columns):
-    response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="%s"' % filename
+    response = HttpResponse(content_type="application/ms-excel")
+    response["Content-Disposition"] = 'attachment; filename="%s"' % filename
 
-    wb = xlwt.Workbook(encoding='utf-8')
+    wb = xlwt.Workbook(encoding="utf-8")
     ws = wb.add_sheet(model)
 
     row_num = 0

@@ -8,27 +8,62 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('produto', '0003_auto_20191005_0359'),
+        ("produto", "0003_auto_20191005_0359"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('estoque', '0003_auto_20190905_2342'),
+        ("estoque", "0003_auto_20190905_2342"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ProtocoloEntrega',
+            name="ProtocoloEntrega",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data', models.DateTimeField(auto_now_add=True)),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("data", models.DateTimeField(auto_now_add=True)),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ProtocoloEntregaItens',
+            name="ProtocoloEntregaItens",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantidade', models.PositiveIntegerField()),
-                ('produto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='produto.Produto')),
-                ('protocolo_entrega', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='protocolo_entrega', to='estoque.ProtocoloEntrega')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantidade", models.PositiveIntegerField()),
+                (
+                    "produto",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="produto.Produto",
+                    ),
+                ),
+                (
+                    "protocolo_entrega",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="protocolo_entrega",
+                        to="estoque.ProtocoloEntrega",
+                    ),
+                ),
             ],
         ),
     ]
