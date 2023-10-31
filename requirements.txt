@@ -2,7 +2,7 @@ django-bootstrap-form==3.4
 django-extensions==2.1.6
 django-widget-tweaks==1.4.3
 Django==2.2.*
-pandas==0.25.2
+pandas
 python-decouple==3.1
 pytz==2019.1
 six==1.12.0
